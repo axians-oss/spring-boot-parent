@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>nl.axians</groupId>
+        <artifactId>axians</artifactId>
+        <version>3</version>
+        <relativePath />
+    </parent>
+
+    <artifactId>spring-boot-parent</artifactId>
+    <version>1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>
+        Axians Spring Boot parent POM. See README.md for more details.
+    </description>
+    <url>https://github.com/axians-oss/spring-boot-parent</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Jacob Hoeflaken</name>
+            <email>jacob.hoeflaken@axians.com</email>
+            <organization>Axians</organization>
+            <organizationUrl>http://www.axians.nl</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:https://github.com/axians-oss/spring-boot-parent.git</connection>
+        <developerConnection>scm:git:https://github.com/axians-oss/spring-boot-parent.git</developerConnection>
+        <url>https://github.com/axians-oss/spring-boot-parent</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <spring-boot.version>3.2.4</spring-boot.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
