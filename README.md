@@ -8,7 +8,7 @@ To use this parent, add the following to your project's `pom.xml`:
 <parent>
     <groupId>nl.axians</groupId>
     <artifactId>spring-boot-parent</artifactId>
-    <version>1</version>
+    <version>5</version>
 </parent>
 ```
 
