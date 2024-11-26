@@ -1,6 +1,6 @@
 # Spring Boot Parent
 
-This is the parent for all Maven based Spring Boot projects in Axians Netherlands. It contains the common settings and plugins for all projects.
+This is the parent for all Maven based Spring Boot projects in Axians Netherlands. It contains the common settings and plugins for all projects. The current version of Spring Boot is `3.4.0`.
 
 ## Usage
 To use this parent, add the following to your project's `pom.xml`:
@@ -8,7 +8,7 @@ To use this parent, add the following to your project's `pom.xml`:
 <parent>
     <groupId>nl.axians</groupId>
     <artifactId>spring-boot-parent</artifactId>
-    <version>5</version>
+    <version>8</version>
 </parent>
 ```
 
