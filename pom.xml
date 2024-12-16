@@ -4,8 +4,8 @@
 
     <parent>
         <groupId>nl.axians</groupId>
-        <artifactId>axians</artifactId>
-        <version>8</version>
+        <artifactId>axians-parent</artifactId>
+        <version>30</version>
         <relativePath />
     </parent>
 
@@ -43,7 +43,14 @@
     </scm>
 
     <properties>
+        <!-- Spring Boot Maven plugin settings -->
+        <container-registry>local</container-registry>
+        <skip.native.image>true</skip.native.image>
+        <metadata-repository.version>0.3.15</metadata-repository.version>
+
+        <!-- Dependency versions -->
         <spring-boot.version>3.4.0</spring-boot.version>
+        <native-maven-plugin.version>0.10.4</native-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -57,4 +64,69 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <configuration>
+                        <image>
+                            <builder>paketobuildpacks/builder-jammy-java-tiny:latest</builder>
+                            <env>
+                                <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                            </env>
+                            <name>${container-registry}/${project.artifactId}:${project.version}</name>
+                        </image>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>repackage</id>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>process-aot</id>
+                            <goals>
+                                <goal>process-aot</goal>
+                            </goals>
+                            <configuration>
+                                <skip>${skip.native.image}</skip>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>build-image</id>
+                            <goals>
+                                <goal>build-image</goal>
+                            </goals>
+                            <configuration>
+                                <skip>${skip.native.image}</skip>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.graalvm.buildtools</groupId>
+                    <artifactId>native-maven-plugin</artifactId>
+                    <version>${native-maven-plugin.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <metadataRepository>
+                            <version>${metadata-repository.version}</version>
+                        </metadataRepository>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>add-reachability-metadata</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
