@@ -5,7 +5,7 @@
     <parent>
         <groupId>nl.axians</groupId>
         <artifactId>axians-parent</artifactId>
-        <version>35</version>
+        <version>36</version>
         <relativePath />
     </parent>
 
@@ -45,7 +45,6 @@
     <properties>
         <!-- Spring Boot Maven plugin settings -->
         <container-registry>local</container-registry>
-        <skip.native.image>true</skip.native.image>
         <metadata-repository.version>0.3.15</metadata-repository.version>
 
         <!-- Dependency versions -->
