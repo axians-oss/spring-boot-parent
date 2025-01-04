@@ -73,6 +73,7 @@
                     <version>${spring-boot.version}</version>
                     <configuration>
                         <image>
+                            <publish>true</publish>
                             <builder>paketobuildpacks/builder-jammy-java-tiny:latest</builder>
                             <env>
                                 <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
