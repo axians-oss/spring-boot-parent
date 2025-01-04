@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>spring-boot-parent</artifactId>
-    <version>16-SNAPSHOT</version>
+    <version>17-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
