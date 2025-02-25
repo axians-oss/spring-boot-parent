@@ -5,7 +5,7 @@
     <parent>
         <groupId>nl.axians</groupId>
         <artifactId>axians-parent</artifactId>
-        <version>37</version>
+        <version>38</version>
         <relativePath />
     </parent>
 
@@ -44,12 +44,14 @@
 
     <properties>
         <!-- Spring Boot Maven plugin settings -->
-        <container-registry>local</container-registry>
-        <metadata-repository.version>0.3.15</metadata-repository.version>
+        <container-registry>docker.io</container-registry>
+        <build.native.image>false</build.native.image>
+        <skip.build.image>true</skip.build.image>
+        <metadata-repository.version>0.3.16</metadata-repository.version>
 
         <!-- Dependency versions -->
-        <spring-boot.version>3.4.1</spring-boot.version>
-        <native-maven-plugin.version>0.10.4</native-maven-plugin.version>
+        <spring-boot.version>3.4.3</spring-boot.version>
+        <native-maven-plugin.version>0.10.5</native-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -75,7 +77,7 @@
                         <image>
                             <builder>paketobuildpacks/builder-jammy-java-tiny:latest</builder>
                             <env>
-                                <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                                <BP_NATIVE_IMAGE>${build.native.image}</BP_NATIVE_IMAGE>
                             </env>
                             <name>${container-registry}/${project.artifactId}:${project.version}</name>
                         </image>
@@ -93,7 +95,7 @@
                                 <goal>process-aot</goal>
                             </goals>
                             <configuration>
-                                <skip>${skip.native.image}</skip>
+                                <skip>${skip.build.image}</skip>
                             </configuration>
                         </execution>
                         <execution>
@@ -102,7 +104,7 @@
                                 <goal>build-image</goal>
                             </goals>
                             <configuration>
-                                <skip>${skip.native.image}</skip>
+                                <skip>${skip.build.image}</skip>
                             </configuration>
                         </execution>
                     </executions>
